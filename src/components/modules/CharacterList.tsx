@@ -8,6 +8,7 @@ import {
   Typography,
 } from "@mui/material";
 import { useEffect } from "react";
+import { Link } from "react-router";
 
 type Character = {
   id: string;
@@ -63,23 +64,25 @@ const CharacterList: React.FC<ChildProps> = ({ page, setLimit, search }) => {
   if (error) return <p>Error loading characters</p>;
 
   return (
-    <Grid container spacing={2}>
+    <Grid container spacing={3} pb={2}>
       {data?.characters.results.map((char) => (
         <Grid size={{ xs: 12, sm: 6, md: 3 }} key={char.id}>
-          <Card>
-            <CardMedia
-              component="img"
-              height="250"
-              image={char.image}
-              alt={char.name}
-            />
-            <CardContent>
-              <Typography variant="h6">{char.name}</Typography>
-              <Typography variant="body2">
-                {char.species} - {char.status}
-              </Typography>
-            </CardContent>
-          </Card>
+          <Link to={"/characters/" + char.id}>
+            <Card>
+              <CardMedia
+                component="img"
+                height="250"
+                image={char.image}
+                alt={char.name}
+              />
+              <CardContent>
+                <Typography variant="h6">{char.name}</Typography>
+                <Typography variant="body2">
+                  {char.species} - {char.status}
+                </Typography>
+              </CardContent>
+            </Card>
+          </Link>
         </Grid>
       ))}
     </Grid>
