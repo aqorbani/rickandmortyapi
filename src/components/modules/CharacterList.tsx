@@ -3,14 +3,14 @@ import {
   Card,
   CardContent,
   CardMedia,
-  CircularProgress,
   Grid,
+  LinearProgress,
   Typography,
 } from "@mui/material";
 
 const GET_CHARACTERS = gql`
   query {
-    characters(page: 2) {
+    characters(page: 1) {
       results {
         id
         name
@@ -39,7 +39,7 @@ type CharactersData = {
 const CharacterList = () => {
   const { data, loading, error } = useQuery<CharactersData>(GET_CHARACTERS);
 
-  if (loading) return <CircularProgress />;
+  if (loading) return <LinearProgress color="success" />;
   if (error) return <p>Error loading characters</p>;
 
   return (
