@@ -3,6 +3,7 @@ import {
   Box,
   Button,
   Container,
+  Grid,
   Toolbar,
   Typography,
 } from "@mui/material";
@@ -11,10 +12,12 @@ import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import { NavigateBefore } from "@mui/icons-material";
 import { useState } from "react";
 import { Link } from "react-router";
+import SearchBox from "../modules/SearchBox";
 
 const MainLayout = () => {
   const [page, setPage] = useState<number>(1);
   const [limit, setLimit] = useState<number>(10);
+  const [search, setSearch] = useState<string>("");
 
   const pageHandler = (status: string) => {
     switch (status) {
@@ -67,10 +70,17 @@ const MainLayout = () => {
           </Toolbar>
         </AppBar>
       </Box>
-      <Typography variant="h4" gutterBottom>
-        Rick and Morty Characters
-      </Typography>
-      <CharacterList page={page} setLimit={setLimit} />
+      <Grid container>
+        <Grid size={6}>
+          <Typography variant="h4" gutterBottom>
+            Rick and Morty Characters
+          </Typography>
+        </Grid>
+        <Grid size={6} sx={{ direction: "rtl" }}>
+          <SearchBox setSearch={setSearch} setPage={setPage} />
+        </Grid>
+      </Grid>
+      <CharacterList page={page} setLimit={setLimit} search={search} />
     </Container>
   );
 };

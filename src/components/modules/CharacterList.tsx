@@ -27,12 +27,12 @@ type CharactersData = {
 interface ChildProps {
   page: number;
   setLimit: React.Dispatch<React.SetStateAction<number>>;
+  search: string;
 }
 
-const CharacterList: React.FC<ChildProps> = ({ page, setLimit }) => {
-  const GET_CHARACTERS = gql`
-  query {
-    characters(page: ${page}) {
+const GET_CHARACTERS = gql`
+  query GetCharacters($page: Int!, $filter: FilterCharacter) {
+    characters(page: $page, filter: $filter) {
       info {
         pages
       }
@@ -46,12 +46,21 @@ const CharacterList: React.FC<ChildProps> = ({ page, setLimit }) => {
     }
   }
 `;
-  const { data, loading, error } = useQuery<CharactersData>(GET_CHARACTERS);
+
+const CharacterList: React.FC<ChildProps> = ({ page, setLimit, search }) => {
+  const { data, loading, error } = useQuery<CharactersData>(GET_CHARACTERS, {
+    variables: {
+      page,
+      filter: search.trim() ? { name: search } : {},
+    },
+  });
+
+  useEffect(() => {
+    setLimit(data?.characters?.info?.pages as number);
+  }, [data]);
 
   if (loading) return <LinearProgress color="success" />;
   if (error) return <p>Error loading characters</p>;
-
-  setLimit(data?.characters?.info?.pages as number);
 
   return (
     <Grid container spacing={2}>
