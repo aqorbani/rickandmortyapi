@@ -7,20 +7,7 @@ import {
   LinearProgress,
   Typography,
 } from "@mui/material";
-
-const GET_CHARACTERS = gql`
-  query {
-    characters(page: 1) {
-      results {
-        id
-        name
-        image
-        status
-        species
-      }
-    }
-  }
-`;
+import { useEffect } from "react";
 
 type Character = {
   id: string;
@@ -32,15 +19,39 @@ type Character = {
 
 type CharactersData = {
   characters: {
+    info: { pages: number };
     results: Character[];
   };
 };
 
-const CharacterList = () => {
+interface ChildProps {
+  page: number;
+  setLimit: React.Dispatch<React.SetStateAction<number>>;
+}
+
+const CharacterList: React.FC<ChildProps> = ({ page, setLimit }) => {
+  const GET_CHARACTERS = gql`
+  query {
+    characters(page: ${page}) {
+      info {
+        pages
+      }
+      results {
+        id
+        name
+        image
+        status
+        species
+      }
+    }
+  }
+`;
   const { data, loading, error } = useQuery<CharactersData>(GET_CHARACTERS);
 
   if (loading) return <LinearProgress color="success" />;
   if (error) return <p>Error loading characters</p>;
+
+  setLimit(data?.characters?.info?.pages as number);
 
   return (
     <Grid container spacing={2}>
