@@ -23,14 +23,35 @@ const Favorites = () => {
 
   if (favorites.length === 0) {
     return (
-      <Typography variant="h6" sx={{ mt: 4, textAlign: "center" }}>
-        No characters have been added to favorites!
-      </Typography>
+      <Grid
+        container
+        spacing={2}
+        sx={{
+          minHeight: "100vh",
+          minWidth: "100%",
+          bgcolor: "#e6ee9c",
+          justifyContent: "center",
+          pt: 4,
+        }}
+      >
+        <Typography variant="h6" sx={{ mt: 4, textAlign: "center" }}>
+          No characters have been added to favorites!
+        </Typography>
+      </Grid>
     );
   }
 
   return (
-    <Grid container spacing={2} sx={{ mt: 2 }}>
+    <Grid
+      container
+      spacing={2}
+      sx={{
+        minHeight: "100vh",
+        minWidth: "100%",
+        bgcolor: "#e6ee9c",
+        p: 2,
+      }}
+    >
       {favorites.map((char) => (
         <Grid size={{ xs: 12, sm: 6, md: 3 }} key={char.id}>
           <Card>

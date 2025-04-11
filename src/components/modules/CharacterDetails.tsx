@@ -5,6 +5,7 @@ import {
   CardContent,
   CardMedia,
   Container,
+  LinearProgress,
   Typography,
 } from "@mui/material";
 
@@ -31,7 +32,7 @@ const CharacterDetails = () => {
     variables: { id },
   });
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <LinearProgress color="success" />;
   if (error || !data?.character) return <p>Character not found</p>;
 
   const char = data.character;
@@ -42,7 +43,7 @@ const CharacterDetails = () => {
       sx={{
         minHeight: "100vh",
         minWidth: "100%",
-        bgcolor: "#dcedc8",
+        bgcolor: "#e6ee9c",
         pt: 4,
       }}
     >
