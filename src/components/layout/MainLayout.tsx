@@ -1,39 +1,13 @@
-import {
-  AppBar,
-  Box,
-  Button,
-  Container,
-  Grid,
-  Toolbar,
-  Typography,
-} from "@mui/material";
+import { Container, Grid, Typography } from "@mui/material";
 import CharacterList from "../modules/CharacterList";
-import NavigateNextIcon from "@mui/icons-material/NavigateNext";
-import { NavigateBefore } from "@mui/icons-material";
 import { useState } from "react";
-import { Link } from "react-router";
 import SearchBox from "../modules/SearchBox";
-import FavoriteIcon from "@mui/icons-material/Favorite";
+import Menu from "../modules/Menu";
 
 const MainLayout = () => {
   const [page, setPage] = useState<number>(1);
   const [limit, setLimit] = useState<number>(10);
   const [search, setSearch] = useState<string>("");
-
-  const pageHandler = (status: string) => {
-    switch (status) {
-      case "+":
-        if (page < limit) {
-          setPage((prevPage) => prevPage + 1);
-        }
-        break;
-      case "-":
-        if (page > 1) {
-          setPage((prevPage) => prevPage - 1);
-        }
-        break;
-    }
-  };
 
   return (
     <Container
@@ -44,37 +18,7 @@ const MainLayout = () => {
         bgcolor: "#dcedc8",
       }}
     >
-      <Box sx={{ mb: "10px" }}>
-        <AppBar position="static" sx={{ fontSize: 40, bgcolor: "#689f38" }}>
-          <Toolbar>
-            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-              <Link to="/">Home</Link>
-              <Link to="/favorites">
-                <FavoriteIcon />
-              </Link>
-            </Typography>
-            {page > 1 && (
-              <Button color="inherit" onClick={() => pageHandler("-")}>
-                <NavigateBefore />
-                previous
-              </Button>
-            )}
-            <Typography
-              variant="body1"
-              component="div"
-              sx={{ bgcolor: "#4caf50", p: 1 }}
-            >
-              {` ${page} `}
-            </Typography>
-            {page != limit && (
-              <Button color="inherit" onClick={() => pageHandler("+")}>
-                next
-                <NavigateNextIcon />
-              </Button>
-            )}
-          </Toolbar>
-        </AppBar>
-      </Box>
+      <Menu limit={limit} page={page} setPage={setPage} />
       <Grid container>
         <Grid size={6}>
           <Typography variant="h4" gutterBottom>
