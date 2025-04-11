@@ -1,6 +1,7 @@
 import { Button, Card, CardMedia, Typography } from "@mui/material";
 import Box from "@mui/material/Box";
 import { Link } from "react-router";
+import InstallBTN from "./InstallBTN";
 
 export default function ReadMe() {
   return (
@@ -29,9 +30,8 @@ export default function ReadMe() {
         Hello my friend...
       </Typography>
       <Typography variant="body1" component="h6" sx={{ mb: "40px" }}>
-        Click the button to see the Ricky and Morty characters.
+        Click the "LET'S START" button to see the Ricky and Morty characters.
       </Typography>
-
       <Link to="/characters">
         <Button
           variant="outlined"
@@ -48,6 +48,7 @@ export default function ReadMe() {
           Let's start
         </Button>
       </Link>
+      <InstallBTN />
     </Box>
   );
 }
