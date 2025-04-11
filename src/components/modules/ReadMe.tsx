@@ -29,7 +29,7 @@ export default function ReadMe() {
       <Typography variant="h5" component="h5" sx={{ mb: "20px" }}>
         Hello my friend...
       </Typography>
-      <Typography variant="body1" component="h6" sx={{ mb: "40px" }}>
+      <Typography variant="body1" component="h6" sx={{ mb: "40px",textAlign:"center" }}>
         Click the "LET'S START" button to see the Ricky and Morty characters.
       </Typography>
       <Link to="/characters">

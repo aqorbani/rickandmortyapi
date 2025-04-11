@@ -8,9 +8,9 @@ interface ChildProps {
 
 const Toolbar: React.FC<ChildProps> = ({ setPage, setSearch }) => {
   return (
-    <Grid container>
+    <Grid container sx={{ mb: 1 }}>
       <Grid size={6}>
-        <Typography variant="h4" gutterBottom>
+        <Typography variant="h4" gutterBottom sx={{ fontSize: "3vw" }}>
           Rick and Morty Characters
         </Typography>
       </Grid>
