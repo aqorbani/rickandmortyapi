@@ -28,7 +28,6 @@ const SearchBox: React.FC<ChildProps> = ({ setSearch, setPage }) => {
 
   return (
     <Paper
-      component="form"
       sx={{
         p: "2px 8px",
         display: "flex",
