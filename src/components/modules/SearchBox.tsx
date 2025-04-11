@@ -22,6 +22,7 @@ const SearchBox: React.FC<ChildProps> = ({ setSearch, setPage }) => {
   const searchHandler = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
+    e.preventDefault();
     setInputValue(e.target.value);
   };
 
