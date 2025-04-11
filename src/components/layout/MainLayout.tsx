@@ -13,6 +13,7 @@ import { NavigateBefore } from "@mui/icons-material";
 import { useState } from "react";
 import { Link } from "react-router";
 import SearchBox from "../modules/SearchBox";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 
 const MainLayout = () => {
   const [page, setPage] = useState<number>(1);
@@ -40,7 +41,7 @@ const MainLayout = () => {
       sx={{
         minHeight: "100vh",
         minWidth: "100%",
-        bgcolor:"#dcedc8"
+        bgcolor: "#dcedc8",
       }}
     >
       <Box sx={{ mb: "10px" }}>
@@ -48,6 +49,9 @@ const MainLayout = () => {
           <Toolbar>
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
               <Link to="/">Home</Link>
+              <Link to="/favorites">
+                <FavoriteIcon />
+              </Link>
             </Typography>
             {page > 1 && (
               <Button color="inherit" onClick={() => pageHandler("-")}>
