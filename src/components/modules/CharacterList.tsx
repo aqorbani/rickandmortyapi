@@ -74,7 +74,18 @@ const CharacterList: React.FC<ChildProps> = ({ page, setLimit, search }) => {
   const isFavorite = (id: string) => favorites.some((c) => c.id === id);
 
   if (loading) return <LinearProgress color="success" />;
-  if (error) return <p>Error loading characters</p>;
+  if (error)
+    return (
+      <Typography variant="h6" sx={{ mt: 4, textAlign: "center" }}>
+        Error loading characters!
+      </Typography>
+    );
+  if (data?.characters.results.length === 0)
+    return (
+      <Typography variant="h6" sx={{ mt: 4, textAlign: "center" }}>
+        Not Found
+      </Typography>
+    );
 
   return (
     <Grid container spacing={3} pb={2}>

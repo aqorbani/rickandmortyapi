@@ -33,7 +33,12 @@ const CharacterDetails = () => {
   });
 
   if (loading) return <LinearProgress color="success" />;
-  if (error || !data?.character) return <p>Character not found</p>;
+  if (error || !data?.character)
+    return (
+      <Typography variant="h6" sx={{ mt: 4, textAlign: "center" }}>
+        Character not found
+      </Typography>
+    );
 
   const char = data.character;
 

@@ -30,7 +30,7 @@ export default function ReadMe() {
         Hello my friend...
       </Typography>
       <Typography variant="body1" component="h6" sx={{ mb: "40px",textAlign:"center" }}>
-        Click the "LET'S START" button to see the Ricky and Morty characters.
+        Click the "LET'S GO" button to see the Ricky and Morty characters.
       </Typography>
       <Link to="/characters">
         <Button
@@ -45,7 +45,7 @@ export default function ReadMe() {
             fontWeight: "bolder",
           }}
         >
-          Let's start
+          Let's GO
         </Button>
       </Link>
       <InstallBTN />
