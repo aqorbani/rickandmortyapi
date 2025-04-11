@@ -24,7 +24,7 @@ const Favorites = () => {
   if (favorites.length === 0) {
     return (
       <Typography variant="h6" sx={{ mt: 4, textAlign: "center" }}>
-        هیچ شخصیتی به علاقه‌مندی‌ها اضافه نشده!
+        No characters have been added to favorites!
       </Typography>
     );
   }

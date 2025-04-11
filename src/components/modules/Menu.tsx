@@ -2,7 +2,8 @@ import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import { NavigateBefore } from "@mui/icons-material";
 import { Link } from "react-router";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import { AppBar, Box, Button, Toolbar, Typography } from "@mui/material";
+import { AppBar, Button, IconButton, Toolbar, Typography } from "@mui/material";
+import CottageIcon from "@mui/icons-material/Cottage";
 
 interface ChildProps {
   limit: number;
@@ -26,15 +27,17 @@ const Menu: React.FC<ChildProps> = ({ limit, page, setPage }) => {
     }
   };
   return (
-    <Box sx={{ mb: "10px" }}>
-      <AppBar position="static" sx={{ fontSize: 40, bgcolor: "#689f38" }}>
-        <Toolbar>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            <Link to="/">Home</Link>
-            <Link to="/favorites">
-              <FavoriteIcon />
-            </Link>
-          </Typography>
+    <AppBar position="sticky" sx={{ mb: 3, bgcolor: "#cddc39", color: "#000" }}>
+      <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
+        <div>
+          <IconButton component={Link} to="/" color="default">
+            <CottageIcon />
+          </IconButton>
+          <IconButton component={Link} to="/favorites" color="default">
+            <FavoriteIcon />
+          </IconButton>
+        </div>
+        <div className="pagination">
           {page > 1 && (
             <Button color="inherit" onClick={() => pageHandler("-")}>
               <NavigateBefore />
@@ -44,7 +47,7 @@ const Menu: React.FC<ChildProps> = ({ limit, page, setPage }) => {
           <Typography
             variant="body1"
             component="div"
-            sx={{ bgcolor: "#4caf50", p: 1 }}
+            sx={{ bgcolor: "#dce775", p: 1 }}
           >
             {` ${page} `}
           </Typography>
@@ -54,9 +57,9 @@ const Menu: React.FC<ChildProps> = ({ limit, page, setPage }) => {
               <NavigateNextIcon />
             </Button>
           )}
-        </Toolbar>
-      </AppBar>
-    </Box>
+        </div>
+      </Toolbar>
+    </AppBar>
   );
 };
 

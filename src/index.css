@@ -10,3 +10,8 @@ a {
   text-decoration: none;
   color: #fff;
 }
+
+.pagination{
+  display: flex;
+  flex-direction: row;
+}
